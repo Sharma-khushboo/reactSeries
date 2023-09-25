@@ -3,6 +3,7 @@ import './App.css';
 import { useState } from 'react';
 
 import Khushi from './Khushi';
+import Form from './Components/Form';
 
 function App() {
  
@@ -39,6 +40,7 @@ function App() {
 
 
   <Khushi/>
+  <Form/>
    </>
   );
 }
