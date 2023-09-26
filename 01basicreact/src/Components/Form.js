@@ -4,12 +4,18 @@ function Form (){
 const [name, setName]= useState('');
 const [email, setEmail]= useState('');
 const [phone, setPhone]= useState('');
+const[isTest, setIsTest]= useState(false);
 const [userdata, setUserData]= useState({});
 
 useEffect(()=>{
  console.log('this is name' , name);
  console.log('this is email', email);
  console.log('this is phone', phone);
+ if(phone.length !== 10){
+    setIsTest(false);
+ }else{
+    setIsTest(true);
+ }
 
 },[name, email, phone]);
 
@@ -61,7 +67,9 @@ const submitHandler =(e)=>{
     value={phone}
     onChange={(e)=> setPhone(e.target.value)}
 
-    /><br/>
+    /> 
+    { isTest ? <span>right no.</span> :<span>enter valid phone no.</span>}
+    <br/>
     <button type="submit"  >submit</button>
     <br/>
     <span>this is your name : {name} no. :{phone} and email :{email}</span>
