@@ -18,15 +18,13 @@ function App() {
     {name:'khushboo4'},
 
   ];
-  let fun = (item)=>{
-    return item;
-  }
+
 
   return (
     <>
      <h1 className='text-black rounded bg-green-500 mb-4'>Hello World</h1>
 
-     <Card username='chai or code' somefun={fun(newarr)} />
+     <Card username='chai or code' somefun={newarr} />
      <Card  btntxt='btn-txt'/>
     </>
   )

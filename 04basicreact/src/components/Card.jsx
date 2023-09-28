@@ -4,6 +4,7 @@ function Card({username ='hitesh sir', btntxt= 'visitme', somefun}){//write prop
     //console.log(username);
    // console.log(somefun?.map((item)=> item)); //this questionmark ? is for null values, to print null. 
     //console.log(props.btntxt);
+    console.log(somefun);
 
     return(
         <>
@@ -21,7 +22,7 @@ function Card({username ='hitesh sir', btntxt= 'visitme', somefun}){//write prop
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
         debitis?
       </p>
-      <button className="mt-2 inline-flex cursor-pointer items-center text-sm font-semibold text-black" onClick={somefun?.map((item)=>{return <li>item.name</li>})}>
+      <button className="mt-2 inline-flex cursor-pointer items-center text-sm font-semibold text-black" onClick={somefun?.map((item)=> itme)}>
         {btntxt} →
       </button>
     </div>
