@@ -13,11 +13,13 @@ const [phone , setPhone]=useState('');
 const [password, setPassword]= useState('');
 const [ userdata, setUserData]= useState([]);
 const [edituserfield, setEditUserField]= useState(false);
+const [userid, setUserId]= useState();
 
 
 // adduser..........
 const addUser =()=>{
     const user ={
+        id: userdata.length +1,
     name: name,
     email:email,
     password:password,
@@ -31,7 +33,9 @@ setEmail("");
 setPhone("");
 setPassword("");
 };
+
 //edituser.........
+
 const edituser = (id,email)=>{
     setEditUserField(true);
     console.log(id);
@@ -40,10 +44,36 @@ const edituser = (id,email)=>{
     setEmail(userdata[id].email);
     setPassword(userdata[id].password);
     setPhone(userdata[id].phone);
+    setUserId(userdata[id].id);
+    
 
-    const data = userdata.filter((item)=> item.email == name );
-    console.log(data);
 };
+
+const saveEditUser = ()=>{
+    let User = {
+        id: userid,
+        name: name,
+        phone:phone,
+        email:email,
+        password:password,
+    }
+    console.log(User);
+   // setUserData((prev)=> [...prev, User]);
+//    const data = userdata.filter((item)=> item.id == userid );
+//     console.log(data);
+    setUserData((prev)=>[...prev.filter((item)=> item.id !== userid),User]);
+    setEditUserField(false);
+    setPhone('');
+    setPassword('');
+    setEmail('');
+    setName('');
+
+};
+const deleteUser = (id)=>{
+    const newData = userdata.filter((item) => item.id != id);
+    setUserData(newData);
+}
+
 // const edituser = (id)=>{
 //     setEditUserField(true);
 //     console.log(id);
@@ -53,7 +83,9 @@ const edituser = (id,email)=>{
 //     setPassword(id.password);
 //     setPhone(id.phone);
 // }
+
 //usereffect............
+
 useEffect(()=>{
     console.log(userdata);
 },[userdata]);
@@ -94,9 +126,10 @@ return (
     />
     <br/><br/>
 
-    {!edituserfield ? (<button style={inputstyle} onClick={addUser}>add</button>
+    {!edituserfield ? (
+    <button style={inputstyle} onClick={addUser}>add</button>
     ) : (
-        <button>Edit User</button>
+        <button onClick={saveEditUser}>Edit User</button>
     )}
     
 
@@ -113,13 +146,14 @@ return (
                       margin: "40px auto",
                     }}>
                 
-               <h3>user : {index}</h3>
+               <h3>Id : {item.id}</h3>
               <p >{item.name}</p>
               <p>{item.email}</p>
               <p>{item.phone}</p>
               <p>{item.password}</p>
               {/* <button onClick={()=> edituser(index)}> edit </button> */}
               <button onClick={()=> edituser(index,item.email)}> edit </button>
+              <button onClick={()=> deleteUser(item.id)}>Delete</button>
             </div>
             </>
         )
