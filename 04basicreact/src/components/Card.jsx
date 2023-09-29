@@ -30,4 +30,4 @@ function Card({username ='hitesh sir', btntxt= 'visitme', somefun}){//write prop
   </>
     )
 };
-export default Card;
+export default Card; 
